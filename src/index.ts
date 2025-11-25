@@ -1,9 +1,13 @@
 import express from 'express'
 import type {Express, Request, Response} from 'express'
+import cors from 'cors'
+
 import {pets} from './data/pets'
 
-const app:Express = express()
 const PORT = 8000
+const app:Express = express()
+
+app.use(cors())
 
 
 
