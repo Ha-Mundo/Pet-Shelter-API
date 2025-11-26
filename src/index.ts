@@ -14,10 +14,12 @@ app.get('/', (req:Request, res:Response<Pet[]>): void => {
   res.json(pets)
 })
 
-app.get('/:id', (req:Request<{id:string}>, res:Response):void =>{
+app.get('/:id', (req:Request<{id:string}>, res:Response<Pet|{message:string}>):void =>{
   const {id} = req.params
-  const pet = pets.find(pet=> pet.id.toString() === id)
-  res.json(pet)
+  const pet:Pet|undefined = pets.find((pet:Pet):boolean => pet.id.toString() === id)
+
+  if(pet) res.json(pet)
+  else res.status(404).json({message:"No pet with that ID"})
 })
 
 app.use((req: Request, res:Response<{message:string}>):void => {
