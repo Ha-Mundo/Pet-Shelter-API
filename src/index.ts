@@ -12,25 +12,48 @@ app.use(cors())
 
 type PetQueryParams = {
   species?:string,
-  adopted?: 'true' | 'false'
+  adopted?: 'true' | 'false',
+  minAge?: string,
+  maxAge?: string
 }
+
+/*
+CHALLENGE: Allow users to query by minAge and maxAge
+
+TESTING:
+/?adopted=false&species=cat&maxAge=2 should return only Willow
+/?adopted=true&species=dog&minAge=5&maxAge=6 should return only Rocky
+*/
 
 app.get('/', (
   req:Request<{}, unknown, {}, PetQueryParams>, 
   res:Response<Pet[]>
-  ):void=> {
-  const {adopted, species} = req.query
+):void=> {
+  const {species, adopted, minAge, maxAge} = req.query
+
   let filteredPets:Pet[] = pets
   
   if (species){
-    filteredPets = filteredPets.filter((pet:Pet):boolean =>
+    filteredPets = filteredPets.filter((pet:Pet):boolean=>
       pet.species.toLowerCase() === species.toLowerCase()
     )
   }
 
   if (adopted){
-    filteredPets = filteredPets.filter((pet:Pet):boolean =>
+    filteredPets = filteredPets.filter((pet:Pet):boolean=>
       pet.adopted === JSON.parse(adopted)
+    )
+  }
+
+  if (minAge){
+    filteredPets = filteredPets.filter((pet:Pet):boolean=>
+      pet.age >= JSON.parse(minAge)
+    )
+  }
+
+  if (maxAge){
+    filteredPets = filteredPets.filter((pet:Pet):boolean=>
+      pet.age <= JSON.parse(maxAge)
     )
   }
 
