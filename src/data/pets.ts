@@ -20,7 +20,7 @@ export const pets: Pet[] = [
     {  
         id: 1,  
         name: "Bella",  
-        species: "Dog",   
+        species: "Dog",  
         breed: "Border Collie",  
         age: 3,  
         adopted: false,  
