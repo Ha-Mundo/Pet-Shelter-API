@@ -12,3 +12,22 @@ export const validateNumericId = (
     next()
   }
 }
+
+/*   
+TESTS:
+/pets/1 - should result in 401 Unauthorised error
+/pets/1?password=please - we should get Bella the dog
+*/
+
+export const pleaseAuth = (
+  req:Request<{}, unknown, {}, {password?:string}>, 
+  res:Response<{message:string}>,
+  next:NextFunction
+) => {
+  const {password} = req.query
+  if (password === 'please'){
+    next()
+  } else {
+    res.status(401).json({message: "Unauthorised. You must say please'"})
+  }
+}
