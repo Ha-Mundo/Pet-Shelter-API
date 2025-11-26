@@ -10,7 +10,8 @@ type PetQueryParams = {
 }
 
 export const getPets = (
-  req:Request<{}, unknown, {}, PetQueryParams>, 
+//request generics <params,resBody,reqBody,reqQuery>
+  req:Request<{}, unknown, {}, PetQueryParams>, //<- {}=skip, unknown=disable
   res:Response<Pet[]>
 ):void=> {
   const {species, adopted, minAge, maxAge} = req.query
