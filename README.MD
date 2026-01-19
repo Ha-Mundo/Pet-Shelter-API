@@ -13,6 +13,7 @@ A RESTful API built with Express.js and TypeScript to manage pet shelter invento
 - [Project Structure](#project-structure)
 
 ## ✨ Features
+
 - **List Pets**: View all pets currently in the shelter  
 - **Advanced Filtering**: Filter pets by:  
   - Species (e.g., Dog, Cat, Rabbit)  
@@ -29,6 +30,7 @@ A RESTful API built with Express.js and TypeScript to manage pet shelter invento
 
 
 ## 🛠️ Tech Stack
+
 - **Runtime**: Node.js
 - **Framework**: Express.js v5.1.0
 - **Language**: TypeScript v5.9.3
